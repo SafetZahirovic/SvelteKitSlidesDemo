@@ -1,33 +1,13 @@
 <script lang="ts">
-	import Prism from '$lib/PrismJS.svelte';
 	import Slide from '$lib/Slide.svelte';
 	import Feature from './Feature.svelte';
 
-	const viteConfig = `
-export default defineConfig({
-	plugins: [
-		svelte({
-			experimental: {
-				inspector: true,
-			}
-		})
-	]
-})`;
-
-	const svelteConfig = `
-const config = {
-  // ...
-  vitePlugin: {
-    experimental: {
-      inspector: true,
-    },
-  },
-}`;
 </script>
+
 
 <Slide>
 	<div class="flex flex-wrap justify-evenly items-center mx-auto max-w-22/24 pt-20">
-		<div class="lg:w-11/24 w-22/24 animate__animated op0 start-2:op100 start-2:animate__fadeInLeft">
+		<div class="lg:w-11/24 w-22/24 animate__animated op0 op100 animate__fadeInLeft">
 			<lottie-player
 				src="https://assets3.lottiefiles.com/private_files/lf30_zyv9n199.json"
 				background="transparent"
@@ -40,7 +20,7 @@ const config = {
 			<Feature>Partial Hydration</Feature>
 			<h1 class="font-sans font-black text-neutral-900 text-5xl text-left mt-8 tracking-tighter">
 				Vi fortsetter med Partial Hydration.
-                
+
 			</h1>
 			<div
 				class="lg:w-11/24 w-22/24 animate__animated op0 start-1:op100 start-1:animate__fadeInRight"
@@ -49,27 +29,34 @@ const config = {
 					Hva er Partial Hydration?
 				</p>
 			</div>
+            <div
+				class="lg:w-11/24 w-22/24 animate__animated op0 start-2:op100 start-2:animate__fadeInRight"
+			>
+				<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">
+					Måte å laste inn kun den koden applikasjonen trenger.
+				</p>
+			</div>
 		</div>
 	</div>
 </Slide>
 <Slide>
 	<div class="flex flex-wrap justify-evenly mx-auto max-w-22/24 pt-20">
 		<div class="xl:w-11/24 w-22/24">
-			<Feature>inspector</Feature>
+			<Feature>partial hydration</Feature>
 			<h1 class="font-sans font-black text-neutral-900 text-5xl text-left mt-8 tracking-tighter">
-				Hvor? Hvem? Hvordan?
+				But how?
 			</h1>
-			<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">
-				Åpner et ukjent prosjekt. Må endre tekst fra "Hello World" til "Foo Bar".
-			</p>
-			<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">
-				Men hvor i alle dager ligger den teksten i koden
-			</p>
-
-			<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">
-				Du drar frem kode og begynner søket, <br />
-				Og gjør mest sannsynlig følgende:
-			</p>
+            <div class="xl:w-20/24 pt-8 w-22/24 animate__animated  animate__fadeInLeft">
+                <lottie-player
+				src="https://assets4.lottiefiles.com/packages/lf20_ng0oaxgb.json"
+				background="transparent"
+				speed="1"
+				loop
+				autoplay
+			/>
+            </div>
+            
+            
 		</div>
 		<div class="xl:w-11/24 w-22/24">
 			<div class="flex flex-wrap justify-evenly items-top mx-auto max-w-22/24">
@@ -80,8 +67,11 @@ const config = {
 					<h2
 						class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
 					>
-						Bytter browser vindu til VS Code (eller noe annet).
+						I gamle dager...
 					</h2>
+                    <p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">
+						Hentet man HTML strengen og rendret den på klienten
+					</p>
 				</div>
 				<div
 					class="w-23/24 md:w-11/24 py-10 animate__animated op0 start-2:op100 start-2:animate__fadeInRight"
@@ -93,10 +83,10 @@ const config = {
 					<h2
 						class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
 					>
-						Du bruker globalt søk...
+						Dette kalles for "hydration"
 					</h2>
 					<p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">
-						Og får mer enn 1 resultat...
+						Man hydrerer klienten med server kode
 					</p>
 				</div>
 				<div
@@ -106,10 +96,12 @@ const config = {
 					<h2
 						class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
 					>
-						Du finner riktig komponent, og endrer teksten
+						Dette gjør at siden er mega rask
 					</h2>
 					<p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">
-						Etter 5 min, fordi dette er en frontend monolit...
+						Men fungerer litt dårlig når vi trenger blanding av
+                        <br/>
+                        Statiske og dynamiske elementer
 					</p>
 				</div>
 				<div
@@ -119,10 +111,12 @@ const config = {
 					<h2
 						class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
 					>
-						Men det du har endret er autogenerert kode...
+						Da bruker man noe som React...
 					</h2>
 					<p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">
-						Og du har ikke endret noe. Back to the square one
+						Men det fører til at man sender ALLE komponentete til klienten
+                        <br/>
+                        Som potensielt resulterer til store bundles
 					</p>
 				</div>
 			</div>
@@ -133,126 +127,69 @@ const config = {
 <Slide>
 	<div class="flex flex-wrap justify-evenly items-center mx-auto max-w-22/24 pt-20">
 		<div class="lg:w-11/24 w-22/24 mb-8">
-			<Feature>Inspector</Feature>
+			<Feature>partial hydration</Feature>
 			<h1 class="font-sans font-black text-neutral-900 text-5xl text-left mt-8 tracking-tighter">
-				Svelte inspector prøver å fikse akkurat dette.
+				Partial hydration prøver å løse akkurat dette problemet.
 			</h1>
 
-			<div
-				class="lg:w-11/24 w-22/24 animate__animated op0 start-1:op100 start-1:animate__fadeInRight"
+			<p
+				class="font-sans font-light text-xl text-gray-500 mt-8 animate__animated op0 leading-relaxed start-1:op100 start-1:animate__fadeInLeft"
 			>
-				<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">
-					Hvordan kan man aktivere Svelte Inspector i Svelte?
-				</p>
-			</div>
+				Noen ganger kalt for <i>progressive hydration</i> eller <i>lazy hydration</i>
+			</p>
+			<p
+				class="font-sans font-light text-xl text-gray-500 mt-8 op0 animate__animated leading-relaxed start-2:op100 start-2:animate__fadeInLeft"
+			>
+				Ideen bak PH er at vi kun <i>hydrerer</i> deler av javascript når vi trenger det
+			</p>
+			<p
+				class="font-sans font-light text-xl text-gray-500 mt-8 op0 animate__animated leading-relaxed start-3:op100 start-3:animate__fadeInLeft"
+			>
+				Et populært eksempel er <i>scrolly telling</i>.
+			</p>
+			<p
+				class="font-sans font-light text-xl text-gray-500 mt-8 op0 animate__animated leading-relaxed start-4:op100 start-4:animate__fadeInLeft"
+			>
+				Hvorfor skal vi rendre hele siden når vi kun trenger deler av koden en bruker leser?
+			</p>
 		</div>
 		<div class="lg:w-12/24  mb-8">
-			<div class="animate__animated op0 start-2:op100 start-2:animate__fadeInRight">
-				<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">Svelte</p>
-				<div>
-					<Prism language="javascript" code={viteConfig} header="vite.config.js" />
-				</div>
-			</div>
-			<div class="animate__animated op0 start-3:op100 start-3:animate__fadeInRight">
-				<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">SvelteKit</p>
-				<div>
-					<Prism language="javascript" code={svelteConfig} header="svelte.config.js" />
+			<div class="animate__animated op0 start-5:op100 start-5:animate__fadeInRight">
+				<div class="xl:w-20/24 pt-8 w-22/24 ">
+					<lottie-player
+						src="https://assets3.lottiefiles.com/private_files/lf30_hxmzmij0.json"
+						background="transparent"
+						speed="1"
+						loop
+						autoplay
+					/>
 				</div>
 			</div>
 		</div>
-	</div>
-</Slide>
+	</div></Slide
+>
 
 <Slide>
-	<div class="flex flex-wrap justify-center mx-auto max-w-22/24 pt-20">
+	<div class="flex flex-wrap justify-center align-center mx-auto max-w-22/24 pt-20">
 		<div class="lg:w-11/24 w-22/24 animate__animated animate__fadeInUp">
-			<Feature>inspector</Feature>
+			<Feature>partial hydration</Feature>
 			<h1 class="font-sans font-black text-neutral-900 text-5xl text-left mt-8 tracking-tighter">
-				Demo
+				Nå skal Filip vise hvordan dette funker i virkeligheten
 			</h1>
-			<p class="font-sans font-light text-xl text-gray-500 mt-8 leading-relaxed">
-				Vi kan nå se hvordan Svelte Inspector fungerer.
-				<br />
-				Men vi må gå ut av presentasjonen ikke sant?<br />
-				<br />
-			</p>
+
 			<div
-				class="animate__animated animate__animated op0 start-1:op100 start-1:animate__fadeInLeft"
+				class="animate__animated flex justify-center op0 start-1:op100 start-1:animate__fadeInRight"
 			>
-				<img src="as-a-matter-of-fact-in-reality.gif" />
-			</div>
-			<div
-				class="h-50 items-center  animate__animated animate__animated op0 start-2:op100 start-2:animate__fadeInLeft"
-			>
-				<h1 class="font-sans font-black text-neutral-900 text-5xl text-left mt-8 tracking-tighter">
-					NOPE
-				</h1>
+				<div class="lg:w-12/24 pt-8 w-22/24 ">
+					<lottie-player
+						src="https://assets6.lottiefiles.com/packages/lf20_EVAHm4.json"
+						background="transparent"
+						speed="1"
+						loop
+						autoplay
+					/>
+				</div>
 			</div>
 		</div>
-	</div>
-</Slide>
-<Slide>
-	<div class="flex flex-col min-h-screen pt-15 ml-8">
-		<Feature>INSPECTOR</Feature>
-		<h1
-			class="font-sans font-black text-neutral-900 text-left text-6xl tracking-tighter mt-4 mb-8 leading-none"
-		>
-			For å oppsumere.
-		</h1>
-		<p class="font-sans font-normal text-lg text-gray-500 max-w-5/6 my-6 leading-relaxed">
-			Svelte Insector =
-		</p>
-		<div class="flex flex-wrap max-h-full max-w-full justify-evenly mx-6">
-			<div
-				class="xl:w-11/36 md:w-8/18 border border-gray-200 p-6 m-4 ml-0 rounded-lg shadow-md animate__animated start-1:animate__pulse start-1:bg-gray-100"
-			>
-				<div class="i-openmoji-shooting-star text-5xl" />
-				<h2
-					class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
-				>
-					Effektivitet.
-				</h2>
-				<p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">
-					Mye raskere å finne komponenten.
-				</p>
-			</div>
-			<div
-				class="xl:w-11/36 md:w-8/18 border border-gray-200 p-6 m-4 ml-0 rounded-lg shadow-md animate__animated start-2:animate__pulse start-2:bg-gray-100"
-			>
-				<div class="i-openmoji-test-tube text-5xl" />
-				<h2
-					class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
-				>
-					Færre Feil.
-				</h2>
-				<p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">
-					Vi slipper å se i kompilerte filer osv...
-				</p>
-			</div>
-			<div
-				class="xl:w-11/36 md:w-8/18 border border-gray-200 p-6 m-4 ml-0 rounded-lg shadow-md animate__animated start-3:animate__pulse start-3:bg-gray-100"
-			>
-				<div class="i-openmoji-ringed-planet text-5xl" />
-				<h2
-					class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
-				>
-					Lett.
-				</h2>
-				<p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">
-					Intuitiv UI gjør det mye enklere.
-				</p>
-			</div>
-			<div
-				class="xl:w-11/36 md:w-8/18 border border-gray-200 p-6 m-4 ml-0 rounded-lg shadow-md animate__animated start-4:animate__pulse start-4:bg-gray-100"
-			>
-				<div class="i-openmoji-violin text-5xl" />
-				<h2
-					class="font-sans font-semibold text-neutral-900 mt-6 text-2xl tracking-tighter leading-none"
-				>
-					Cool.
-				</h2>
-				<p class="font-sans font-light text-gray-500 mt-4 leading-relaxed">Hella Cool.</p>
-			</div>
-		</div>
-	</div>
-</Slide>
+	</div></Slide
+>

@@ -6,7 +6,7 @@
 	import Demo from '../components/Demo.svelte';
 	import Feature from '../components/Feature.svelte';
 	import Prism from '$lib/PrismJS.svelte';
-	import PartialHydration from 'src/components/PartialHydration.svelte';
+	import PartialHydration from '../components/PartialHydration.svelte';
 </script>
 
 <Deck>
